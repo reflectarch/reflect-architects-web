@@ -1,4 +1,19 @@
+/* START OF FILE globals.css */
+
 @import "tailwindcss";
+
+/* CSS Custom Properties for scroll effects */
+@property --speed {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --scroll {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
 
 :root {
   --background: #ffffff;
@@ -8,8 +23,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-poppins);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +34,74 @@
   }
 }
 
+/* --- MODIFIED --- */
+/* Make html and body take full height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Keep body from scrolling */
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  /* Make body a flex container */
+  display: flex;
+  flex-direction: column;
+}
+/* --- END MODIFIED --- */
+
+/* Custom scrollbar styles for horizontal scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Horizontal scroll container with fluid scaling */
+.horizontal-scroll-container {
+  width: 100vw;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Wrapper that gets scaled with fluid motion */
+.horizontal-scroll-wrapper {
+  --speed: 0;
+  --scroll: 0;
+  
+  display: flex;
+  align-items: center; 
+  gap: 2rem;
+  width: max-content;
+  padding: 0 4rem; 
+  height: 100%; 
+  
+  transform: scale(calc(1 - var(--speed) * 0.5));
+  transform-origin: calc(var(--scroll) * 1px) center;
+  
+  transition: 
+    --speed 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Enhanced card hover effects that work with scaling */
+.project-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
 }
