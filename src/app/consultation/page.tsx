@@ -36,7 +36,7 @@ export default function Consultation() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
@@ -88,7 +88,7 @@ export default function Consultation() {
                     Initial Meeting
                   </h3>
                   <p className="text-gray-600">
-                    We'll discuss your vision, requirements, and project scope in detail.
+                    We&apos;ll discuss your vision, requirements, and project scope in detail.
                   </p>
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default function Consultation() {
                     Site Analysis
                   </h3>
                   <p className="text-gray-600">
-                    We'll evaluate your site and provide professional recommendations.
+                    We&apos;ll evaluate your site and provide professional recommendations.
                   </p>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function Consultation() {
                     Proposal
                   </h3>
                   <p className="text-gray-600">
-                    Receive a detailed proposal with timeline, budget, and design approach.
+                    Based on your needs, we&apos;ll prepare a detailed proposal outlining our approach, timeline, and fees.
                   </p>
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default function Consultation() {
             
             {submitStatus === 'success' && (
               <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 mb-4">
-                Thank you! Your consultation request has been submitted successfully. We'll get back to you soon.
+                Thank you! Your consultation request has been submitted successfully. We&apos;ll get back to you soon.
               </div>
             )}
             

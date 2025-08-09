@@ -4,6 +4,7 @@ import { PortableText, PortableTextComponents } from '@portabletext/react';
 import { getArticleBySlug } from '@/lib/queries';
 import { urlFor } from '@/lib/sanity';
 import { getLocale } from 'next-intl/server';
+import Link from 'next/link';
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -14,9 +15,10 @@ function formatDate(dateString: string): string {
   });
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const locale = await getLocale();
-  const article = await getArticleBySlug(params.slug, locale);
+  const article = await getArticleBySlug(slug, locale);
 
   if (!article) {
     return notFound();
@@ -43,16 +45,19 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     marks: {
       strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
       em: ({ children }) => <em className="italic">{children}</em>,
-      link: ({ children, value }) => (
-        <a
-          href={(value as any)?.href || '#'}
-          className="text-gray-900 underline hover:text-gray-600 transition-colors"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ),
+      link: ({ children, value }: { children: React.ReactNode; value?: { href?: string } }) => {
+        const href = value?.href ?? '#';
+        return (
+          <a
+            href={href}
+            className="text-gray-900 underline hover:text-gray-600 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {children}
+          </a>
+        );
+      },
     },
     list: {
       bullet: ({ children }) => (
@@ -75,7 +80,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   return (
     <div className="bg-white h-full overflow-y-auto">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <a href="/news" className="text-sm text-gray-600 hover:text-gray-900">← Back to News</a>
+        <Link href="/news" className="text-sm text-gray-600 hover:text-gray-900">← Back to News</Link>
 
         <header className="mt-4 mb-6">
           <h1 className="text-3xl md:text-4xl font-light text-gray-900 tracking-wide">

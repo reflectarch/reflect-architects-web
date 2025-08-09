@@ -19,7 +19,7 @@ export default function About() {
               OUR PHILOSOPHY
             </h2>
             <p className="text-gray-600 leading-relaxed mb-6">
-              Architecture is more than just building structures; it's about 
+              Architecture is more than just building structures; it&apos;s about 
               creating spaces that inspire, comfort, and connect people with 
               their environment. We believe in a holistic approach that 
               considers not just the aesthetic and functional aspects of design, 

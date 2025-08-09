@@ -34,7 +34,7 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
@@ -121,7 +121,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {submitStatus === 'success' && (
                 <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 mb-4">
-                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
                 </div>
               )}
               

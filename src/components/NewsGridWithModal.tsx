@@ -46,16 +46,19 @@ export default function NewsGridWithModal({
       marks: {
         strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
         em: ({ children }) => <em className="italic">{children}</em>,
-        link: ({ children, value }) => (
-          <a
-            href={(value as any)?.href || '#'}
-            className="text-gray-900 underline hover:text-gray-600 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {children}
-          </a>
-        ),
+        link: ({ children, value }: { children: React.ReactNode; value?: { href?: string } }) => {
+          const href = value?.href ?? '#';
+          return (
+            <a
+              href={href}
+              className="text-gray-900 underline hover:text-gray-600 transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {children}
+            </a>
+          );
+        },
       },
       list: {
         bullet: ({ children }) => (
