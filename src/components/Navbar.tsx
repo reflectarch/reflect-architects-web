@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import {useTranslations} from 'next-intl';
+import LanguageToggle from './LanguageToggle';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,13 +12,13 @@ export default function Navbar() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-
+  const t = useTranslations('Navbar');
   return (
     <nav className="w-full bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 md:px-0">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 md:pl-[100px]">
             <Link href="/" className="flex items-center">
               <Image
                 src="/reflect-logo.svg"
@@ -29,42 +31,47 @@ export default function Navbar() {
           </div>
 
           {/* Navigation Links - Desktop */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link
                 href="/"
                 className="text-gray-900 hover:text-gray-600 px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors duration-200"
               >
-                Projects
+                {t('projects')}
               </Link>
               <Link
                 href="/news"
                 className="text-gray-900 hover:text-gray-600 px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors duration-200"
               >
-                News
+                {t('news')}
               </Link>
               <Link
                 href="/about"
                 className="text-gray-900 hover:text-gray-600 px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors duration-200"
               >
-                About
+                {t('about')}
               </Link>
               <Link
                 href="/contact"
                 className="text-gray-900 hover:text-gray-600 px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors duration-200"
               >
-                Contact
+                {t('contact')}
               </Link>
+            </div>
+            
+            {/* Language Toggle */}
+            <div className="ml-8">
+              <LanguageToggle />
             </div>
           </div>
 
           {/* Get Consultation Button - Desktop */}
-          <div className="hidden md:block">
+          <div className="hidden md:block md:pr-[100px]">
             <Link
               href="/consultation"
               className="bg-black text-white px-4 py-2 text-xs font-medium tracking-wider uppercase hover:bg-gray-800 transition-colors duration-200"
             >
-              Get Consultation
+              {t('consultation')}
             </Link>
           </div>
 
@@ -124,36 +131,42 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-gray-900 hover:text-gray-600 block px-3 py-2 text-base font-medium tracking-wide uppercase"
             >
-              Projects
+              {t('projects')}
             </Link>
             <Link
               href="/news"
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-gray-900 hover:text-gray-600 block px-3 py-2 text-base font-medium tracking-wide uppercase"
             >
-              News
+              {t('news')}
             </Link>
             <Link
               href="/about"
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-gray-900 hover:text-gray-600 block px-3 py-2 text-base font-medium tracking-wide uppercase"
             >
-              About
+              {t('about')}
             </Link>
             <Link
               href="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-gray-900 hover:text-gray-600 block px-3 py-2 text-base font-medium tracking-wide uppercase"
             >
-              Contact
+              {t('contact')}
             </Link>
+            
+            {/* Mobile Language Toggle */}
+            <div className="px-3 py-2">
+              <LanguageToggle />
+            </div>
+            
             <div className="pt-4 pb-2">
               <Link
                 href="/consultation"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="bg-black text-white block px-3 py-2 text-sm font-medium tracking-wider uppercase hover:bg-gray-800 transition-colors duration-200 text-center"
               >
-                Get Consultation
+                {t('consultation')}
               </Link>
             </div>
           </div>

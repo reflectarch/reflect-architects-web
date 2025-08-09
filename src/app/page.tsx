@@ -1,6 +1,7 @@
 import { getAllProjects } from '@/lib/queries';
 import { urlFor, SanityProject } from '@/lib/sanity';
 import ProjectsClient from '@/components/ProjectsClient';
+import {getLocale} from 'next-intl/server';
 
 // Transform Sanity data to match our component interface
 function transformProjectForClient(sanityProject: SanityProject) {
@@ -24,8 +25,11 @@ function transformProjectForClient(sanityProject: SanityProject) {
 }
 
 export default async function Projects() {
-  // Fetch projects from Sanity
-  const sanityProjects = await getAllProjects();
+  // Get current locale for language-specific content
+  const locale = await getLocale();
+  
+  // Fetch projects from Sanity for the current language
+  const sanityProjects = await getAllProjects(locale);
   
   // Transform for client components
   const projects = sanityProjects.map(transformProjectForClient);

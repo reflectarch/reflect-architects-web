@@ -1,0 +1,121 @@
+{
+  "Navbar": {
+    "projects": "Projects",
+    "news": "News",
+    "about": "About",
+    "contact": "Contact",
+    "consultation": "Get Consultation",
+    "openMenu": "Open main menu"
+  },
+  "Footer": {
+    "email": "Email",
+    "offices": "Offices",
+    "social": "Social",
+    "legal": "Legal",
+    "emailItems": {
+      "newProjects": "NEW PROJECTS",
+      "press": "PRESS",
+      "lectures": "LECTURES",
+      "exhibitions": "EXHIBITIONS"
+    },
+    "officeItems": {
+      "newYork": "NEW YORK",
+      "losAngeles": "LOS ANGELES",
+      "chicago": "CHICAGO"
+    },
+    "socialItems": {
+      "instagram": "INSTAGRAM",
+      "linkedin": "LINKEDIN",
+      "facebook": "FACEBOOK",
+      "twitter": "TWITTER"
+    },
+    "legalItems": {
+      "privacyPolicy": "PRIVACY POLICY",
+      "termsOfService": "TERMS OF SERVICE",
+      "cookiePolicy": "COOKIE POLICY",
+      "licensing": "LICENSING",
+      "viewPolicy": "View Policy",
+      "viewTerms": "View Terms",
+      "viewLicensing": "View Licensing"
+    }
+  },
+  "ProjectsPage": {
+    "noProjectsTitle": "No Projects Found",
+    "noProjectsDescription": "Projects will appear here once they're added to your Sanity CMS."
+  },
+  "NewsPage": {
+    "title": "NEWS & INSIGHTS",
+    "intro": "Stay updated with our latest projects, architectural insights, and industry developments. Discover the stories behind our designs and our vision for the future of architecture.",
+    "noArticlesTitle": "No Articles Found",
+    "noArticlesDescription": "News articles will appear here once they're added to your Sanity CMS.",
+    "byAuthor": "By {author}",
+    "readMore": "Read More →"
+  },
+  "AboutPage": {
+    "title": "ABOUT US",
+    "intro": "We are a team of passionate architects dedicated to creating innovative, sustainable, and timeless designs that enhance the human experience and respect the environment.",
+    "philosophyTitle": "OUR PHILOSOPHY",
+    "philosophyText1": "Architecture is more than just building structures; it's about creating spaces that inspire, comfort, and connect people with their environment. We believe in a holistic approach that considers not just the aesthetic and functional aspects of design, but also its impact on sustainability and community.",
+    "philosophyText2": "Every project we undertake is guided by principles of innovation, environmental responsibility, and timeless design. We strive to create buildings that will stand the test of time, both structurally and aesthetically.",
+    "teamTitle": "OUR TEAM",
+    "teamText": "Our diverse team brings together decades of experience in architectural design, urban planning, and sustainable construction. We collaborate closely with clients, engineers, and contractors to ensure every project exceeds expectations.",
+    "founded": "Founded",
+    "projectsCompleted": "Projects Completed",
+    "awards": "Awards"
+  },
+  "ConsultationPage": {
+    "title": "GET CONSULTATION",
+    "intro": "Schedule a consultation with our expert architects to discuss your project, explore design possibilities, and understand how we can bring your vision to life.",
+    "processTitle": "CONSULTATION PROCESS",
+    "step1Title": "Initial Meeting",
+    "step1Text": "We'll discuss your vision, requirements, and project scope in detail.",
+    "step2Title": "Site Analysis",
+    "step2Text": "We'll evaluate your site and provide professional recommendations.",
+    "step3Title": "Proposal",
+    "step3Text": "Receive a detailed proposal with timeline, budget, and design approach.",
+    "bookingTitle": "BOOK YOUR CONSULTATION",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "projectType": "Project Type",
+    "projectTypes": {
+      "residential": "Residential",
+      "commercial": "Commercial",
+      "renovation": "Renovation",
+      "interior": "Interior Design",
+      "other": "Other"
+    },
+    "projectInfo": "Tell us about your project",
+    "scheduleButton": "Schedule Consultation"
+  },
+  "ContactPage": {
+    "title": "CONTACT US",
+    "intro": "Ready to start your architectural journey? Get in touch with us to discuss your project and discover how we can bring your vision to life.",
+    "getInTouch": "GET IN TOUCH",
+    "office": "Office",
+    "phone": "Phone",
+    "email": "Email",
+    "businessHours": "Business Hours",
+    "businessHoursDetails": "Monday - Friday: 9:00 AM - 6:00 PM<br/>Saturday: 10:00 AM - 4:00 PM<br/>Sunday: Closed",
+    "sendMessage": "SEND A MESSAGE",
+    "name": "Name",
+    "subject": "Subject",
+    "message": "Message",
+    "sendButton": "Send Message"
+  },
+  "ProjectsClient": {
+    "noImage": "No image",
+    "noHeroImage": "No hero image",
+    "close": "Close",
+    "client": "Client",
+    "typology": "Typology",
+    "size": "Size",
+    "status": "Status",
+    "year": "Year"
+  },
+  "InteractiveMap": {
+    "loading": "Loading map...",
+    "projectLocation": "Project Location"
+  }
+} 

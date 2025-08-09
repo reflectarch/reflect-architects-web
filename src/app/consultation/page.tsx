@@ -1,4 +1,64 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Consultation() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    projectType: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="bg-white h-full overflow-y-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -63,16 +123,32 @@ export default function Consultation() {
             </div>
           </div>
           
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <h2 className="text-2xl font-light text-gray-900 mb-6 tracking-wide">
               BOOK YOUR CONSULTATION
             </h2>
+            
+            {submitStatus === 'success' && (
+              <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 mb-4">
+                Thank you! Your consultation request has been submitted successfully. We'll get back to you soon.
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 mb-4">
+                Sorry, there was an error submitting your request. Please try again.
+              </div>
+            )}
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <input
                   type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                   placeholder="First Name"
+                  required
                   className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-0"
                 />
               </div>
@@ -80,7 +156,11 @@ export default function Consultation() {
               <div>
                 <input
                   type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
                   placeholder="Last Name"
+                  required
                   className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-0"
                 />
               </div>
@@ -89,7 +169,11 @@ export default function Consultation() {
             <div>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Email"
+                required
                 className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-0"
               />
             </div>
@@ -97,13 +181,21 @@ export default function Consultation() {
             <div>
               <input
                 type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 placeholder="Phone"
                 className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-0"
               />
             </div>
             
             <div>
-              <select className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 focus:border-black focus:outline-none focus:ring-0">
+              <select 
+                name="projectType"
+                value={formData.projectType}
+                onChange={handleChange}
+                className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 focus:border-black focus:outline-none focus:ring-0"
+              >
                 <option value="">Project Type</option>
                 <option value="residential">Residential</option>
                 <option value="commercial">Commercial</option>
@@ -115,8 +207,12 @@ export default function Consultation() {
             
             <div>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 rows={4}
                 placeholder="Tell us about your project"
+                required
                 className="w-full px-0 py-3 border-0 border-b border-gray-300 bg-transparent text-gray-900 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-0 resize-none"
               ></textarea>
             </div>
@@ -124,9 +220,10 @@ export default function Consultation() {
             <div>
               <button
                 type="submit"
-                className="bg-black text-white px-8 py-3 text-sm font-medium tracking-wider uppercase hover:bg-gray-800 transition-colors duration-200"
+                disabled={isSubmitting}
+                className="bg-black text-white px-8 py-3 text-sm font-medium tracking-wider uppercase hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Schedule Consultation
+                {isSubmitting ? 'Submitting...' : 'Schedule Consultation'}
               </button>
             </div>
           </form>

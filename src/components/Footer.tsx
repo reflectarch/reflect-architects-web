@@ -1,8 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import {useTranslations} from 'next-intl';
+
 
 export default function Footer() {
+  const t = useTranslations('Footer');
   const [expandedSections, setExpandedSections] = useState<{
     email: boolean;
     offices: boolean;
@@ -60,7 +63,7 @@ export default function Footer() {
               className="flex items-center justify-between w-full text-left group"
             >
               <span className="text-sm font-medium text-gray-900 uppercase tracking-wider">
-                EMAIL
+                {t('email')}
               </span>
               <span className="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">
                 {expandedSections.email ? '−' : '+'}
@@ -93,7 +96,7 @@ export default function Footer() {
               className="flex items-center justify-between w-full text-left group"
             >
               <span className="text-sm font-medium text-gray-900 uppercase tracking-wider">
-                OFFICES
+                {t('offices')}
               </span>
               <span className="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">
                 {expandedSections.offices ? '−' : '+'}
@@ -123,7 +126,7 @@ export default function Footer() {
               className="flex items-center justify-between w-full text-left group"
             >
               <span className="text-sm font-medium text-gray-900 uppercase tracking-wider">
-                SOCIAL
+                {t('social')}
               </span>
               <span className="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">
                 {expandedSections.social ? '−' : '+'}
@@ -156,7 +159,7 @@ export default function Footer() {
               className="flex items-center justify-between w-full text-left group"
             >
               <span className="text-sm font-medium text-gray-900 uppercase tracking-wider">
-                LEGAL
+                {t('legal')}
               </span>
               <span className="text-lg text-gray-600 group-hover:text-gray-900 transition-colors">
                 {expandedSections.legal ? '−' : '+'}

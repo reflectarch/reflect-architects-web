@@ -1,8 +1,8 @@
-import { client, SanityProject, SanityArticle } from './sanity';
+import { client, SanityProject, SanityArticle, SanityTranslation } from './sanity';
 
-// GROQ queries
+// Language-aware GROQ queries
 export const projectsQuery = `
-  *[_type == "project"] | order(date desc) {
+  *[_type == "project" && language == $language] | order(date desc) {
     _id,
     _type,
     _createdAt,
@@ -15,6 +15,7 @@ export const projectsQuery = `
     typology,
     status,
     size,
+    language,
     heroImage {
       _type,
       asset {
@@ -29,6 +30,13 @@ export const projectsQuery = `
         _ref,
         _type
       }
+    },
+    // Get the translations metadata
+    "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+      _id,
+      title,
+      slug,
+      language
     },
     contentBlocks[] {
       _type,
@@ -175,7 +183,7 @@ export const projectsQuery = `
 `;
 
 export const projectBySlugQuery = `
-  *[_type == "project" && slug.current == $slug][0] {
+  *[_type == "project" && slug.current == $slug && language == $language][0] {
     _id,
     _type,
     _createdAt,
@@ -188,6 +196,7 @@ export const projectBySlugQuery = `
     typology,
     status,
     size,
+    language,
     heroImage {
       _type,
       asset {
@@ -202,6 +211,13 @@ export const projectBySlugQuery = `
         _ref,
         _type
       }
+    },
+    // Get the translations metadata
+    "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+      _id,
+      title,
+      slug,
+      language
     },
     contentBlocks[] {
       _type,
@@ -347,10 +363,10 @@ export const projectBySlugQuery = `
   }
 `;
 
-// Data fetching functions
-export async function getAllProjects(): Promise<SanityProject[]> {
+// Language-aware data fetching functions
+export async function getAllProjects(language: string = 'en'): Promise<SanityProject[]> {
   try {
-    const projects = await client.fetch(projectsQuery);
+    const projects = await client.fetch(projectsQuery, { language });
     return projects || [];
   } catch (error) {
     console.error('Error fetching projects:', error);
@@ -358,9 +374,9 @@ export async function getAllProjects(): Promise<SanityProject[]> {
   }
 }
 
-export async function getProjectBySlug(slug: string): Promise<SanityProject | null> {
+export async function getProjectBySlug(slug: string, language: string = 'en'): Promise<SanityProject | null> {
   try {
-    const project = await client.fetch(projectBySlugQuery, { slug });
+    const project = await client.fetch(projectBySlugQuery, { slug, language });
     return project || null;
   } catch (error) {
     console.error('Error fetching project by slug:', error);
@@ -368,9 +384,9 @@ export async function getProjectBySlug(slug: string): Promise<SanityProject | nu
   }
 }
 
-// Article queries
+// Language-aware article queries
 export const articlesQuery = `
-  *[_type == "article"] | order(publishedAt desc) {
+  *[_type == "article" && language == $language] | order(publishedAt desc) {
     _id,
     _type,
     _createdAt,
@@ -379,6 +395,7 @@ export const articlesQuery = `
     slug,
     publishedAt,
     excerpt,
+    language,
     featuredImage {
       _type,
       asset {
@@ -386,6 +403,13 @@ export const articlesQuery = `
         _type
       },
       alt
+    },
+    // Get the translations metadata
+    "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+      _id,
+      title,
+      slug,
+      language
     },
     content[] {
       _type,
@@ -408,7 +432,7 @@ export const articlesQuery = `
 `;
 
 export const articleBySlugQuery = `
-  *[_type == "article" && slug.current == $slug][0] {
+  *[_type == "article" && slug.current == $slug && language == $language][0] {
     _id,
     _type,
     _createdAt,
@@ -417,6 +441,7 @@ export const articleBySlugQuery = `
     slug,
     publishedAt,
     excerpt,
+    language,
     featuredImage {
       _type,
       asset {
@@ -424,6 +449,13 @@ export const articleBySlugQuery = `
         _type
       },
       alt
+    },
+    // Get the translations metadata
+    "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
+      _id,
+      title,
+      slug,
+      language
     },
     content[] {
       _type,
@@ -445,10 +477,10 @@ export const articleBySlugQuery = `
   }
 `;
 
-// Article data fetching functions
-export async function getAllArticles(): Promise<SanityArticle[]> {
+// Language-aware article data fetching functions
+export async function getAllArticles(language: string = 'en'): Promise<SanityArticle[]> {
   try {
-    const articles = await client.fetch(articlesQuery);
+    const articles = await client.fetch(articlesQuery, { language });
     return articles || [];
   } catch (error) {
     console.error('Error fetching articles:', error);
@@ -456,9 +488,9 @@ export async function getAllArticles(): Promise<SanityArticle[]> {
   }
 }
 
-export async function getArticleBySlug(slug: string): Promise<SanityArticle | null> {
+export async function getArticleBySlug(slug: string, language: string = 'en'): Promise<SanityArticle | null> {
   try {
-    const article = await client.fetch(articleBySlugQuery, { slug });
+    const article = await client.fetch(articleBySlugQuery, { slug, language });
     return article || null;
   } catch (error) {
     console.error('Error fetching article by slug:', error);
@@ -485,4 +517,29 @@ export function transformSanityProject(sanityProject: SanityProject) {
     iconSvgUrl: sanityProject.iconSvg,
     contentBlocks: sanityProject.contentBlocks || []
   };
+}
+
+// Helper function to get available languages for a document  
+export function getAvailableLanguages(translations?: SanityTranslation[]): string[] {
+  if (!translations || translations.length === 0) {
+    return [];
+  }
+  return translations.map(translation => translation.language).filter(Boolean);
+}
+
+// Helper function to get translation by language
+export function getTranslationByLanguage(translations: SanityTranslation[] = [], targetLanguage: string) {
+  return translations.find(translation => translation.language === targetLanguage);
+}
+
+// Helper function to check if content exists in specific language
+export async function hasContentInLanguage(documentType: 'project' | 'article', language: string): Promise<boolean> {
+  try {
+    const query = `count(*[_type == "${documentType}" && language == $language])`;
+    const count = await client.fetch(query, { language });
+    return count > 0;
+  } catch (error) {
+    console.error(`Error checking content for language ${language}:`, error);
+    return false;
+  }
 } 

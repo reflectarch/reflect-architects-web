@@ -1,12 +1,21 @@
 import { createClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 
-// Sanity configuration
+// Sanity configuration for read operations
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pg7qj6xh',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
-  useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  useCdn: true, // Use CDN for read operations
+});
+
+// Sanity configuration for write operations (server-side only)
+export const writeClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'pg7qj6xh',
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
+  useCdn: false, // Don't use CDN for write operations
+  token: process.env.SANITY_API_TOKEN, // Server-side only token for write operations
 });
 
 // Get a pre-configured url-builder from your sanity client
@@ -123,6 +132,14 @@ export type SanityContentBlock =
   | SanityTeamBlock
   | SanityTwoColumnBlock;
 
+// Translation reference interface
+export interface SanityTranslation {
+  _id: string;
+  title: string;
+  slug: SanitySlug;
+  language: string;
+}
+
 // Project type from Sanity
 export interface SanityProject {
   _id: string;
@@ -137,12 +154,14 @@ export interface SanityProject {
   typology: string;
   status: string;
   size?: string;
+  language: string;
   heroImage: SanityImage;
   iconSvg?: SanityImage;
   contentBlocks?: SanityContentBlock[];
+  _translations?: SanityTranslation[];
 }
 
-// Article type for news/blog posts
+// Article type from Sanity  
 export interface SanityArticle {
   _id: string;
   _type: 'article';
@@ -152,6 +171,7 @@ export interface SanityArticle {
   slug: SanitySlug;
   publishedAt: string;
   excerpt?: string;
+  language: string;
   featuredImage?: SanityImage;
   content: Array<{
     _type: 'block';
@@ -170,4 +190,35 @@ export interface SanityArticle {
   }>;
   author?: string;
   category?: string;
+  _translations?: SanityTranslation[];
+}
+
+// Consultation Request type from Sanity
+export interface SanityConsultationRequest {
+  _id: string;
+  _type: 'consultationRequest';
+  _createdAt: string;
+  _updatedAt: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  projectType?: 'residential' | 'commercial' | 'renovation' | 'interior' | 'other';
+  message: string;
+  submittedAt: string;
+  status: 'new' | 'in-review' | 'contacted' | 'scheduled' | 'completed' | 'archived';
+}
+
+// Contact Request type from Sanity
+export interface SanityContactRequest {
+  _id: string;
+  _type: 'contactRequest';
+  _createdAt: string;
+  _updatedAt: string;
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+  submittedAt: string;
+  status: 'new' | 'read' | 'in-progress' | 'replied' | 'resolved' | 'archived';
 } 

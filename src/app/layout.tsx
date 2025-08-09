@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoadingAnimation from "@/components/LoadingAnimation";
+import {NextIntlClientProvider} from 'next-intl';
+
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,14 +29,16 @@ export default function RootLayout({
         className={`${poppins.variable} antialiased`}
       >
         <LoadingAnimation>
-          <Navbar />
-          {/* --- MODIFIED --- */}
-          {/* This main element will grow to fill the space between Navbar and Footer */}
-          <main className="flex-grow overflow-hidden">
-            {children}
-          </main>
-          {/* --- END MODIFIED --- */}
-          <Footer />
+          <NextIntlClientProvider>
+            <Navbar />
+              {/* --- MODIFIED --- */}
+              {/* This main element will grow to fill the space between Navbar and Footer */}
+                <main className="flex-grow overflow-hidden">
+                  {children}
+                </main>
+              {/* --- END MODIFIED --- */}
+            <Footer />
+          </NextIntlClientProvider>
         </LoadingAnimation>
       </body>
     </html>

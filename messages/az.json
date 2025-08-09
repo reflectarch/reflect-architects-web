@@ -1,0 +1,121 @@
+{
+  "Navbar": {
+    "projects": "Layihələr",
+    "news": "Xəbərlər",
+    "about": "Haqqımızda",
+    "contact": "Əlaqə",
+    "consultation": "Məsləhət alın",
+    "openMenu": "Əsas menyunu aç"
+  },
+  "Footer": {
+    "email": "E-poçt",
+    "offices": "Ofislər",
+    "social": "Sosial",
+    "legal": "Hüquqi",
+    "emailItems": {
+      "newProjects": "YENİ LAYİHƏLƏR",
+      "press": "MƏTBUAT",
+      "lectures": "MÜHAZİRƏLƏR",
+      "exhibitions": "SƏRGİLƏR"
+    },
+    "officeItems": {
+      "newYork": "NEW YORK",
+      "losAngeles": "LOS-ANCELES",
+      "chicago": "ÇİKAQO"
+    },
+    "socialItems": {
+      "instagram": "INSTAGRAM",
+      "linkedin": "LINKEDIN",
+      "facebook": "FACEBOOK",
+      "twitter": "TWITTER"
+    },
+    "legalItems": {
+      "privacyPolicy": "MƏXFİLİK SİYASƏTİ",
+      "termsOfService": "XİDMƏT ŞƏRTLƏRİ",
+      "cookiePolicy": "COOKIE SİYASƏTİ",
+      "licensing": "LİSENZİYALAŞDIRMA",
+      "viewPolicy": "Siyasətə baxın",
+      "viewTerms": "Şərtlərə baxın",
+      "viewLicensing": "Lisenziyaya baxın"
+    }
+  },
+  "ProjectsPage": {
+    "noProjectsTitle": "Layihə Tapılmadı",
+    "noProjectsDescription": "Layihələr Sanity CMS-ə əlavə edildikdən sonra burada görünəcək."
+  },
+  "NewsPage": {
+    "title": "XƏBƏRLƏR VƏ İCMALLAR",
+    "intro": "Ən son layihələrimiz, memarlıq anlayışlarımız və sənaye inkişafları ilə tanış olun. Dizaynlarımızın arxasındakı hekayələri və memarlığın gələcəyi ilə bağlı vizyonumuzu kəşf edin.",
+    "noArticlesTitle": "Məqalə Tapılmadı",
+    "noArticlesDescription": "Xəbər məqalələri Sanity CMS-ə əlavə edildikdən sonra burada görünəcək.",
+    "byAuthor": "{author} tərəfindən",
+    "readMore": "Daha çox oxu →"
+  },
+  "AboutPage": {
+    "title": "HAQQIMIZDA",
+    "intro": "Biz insan təcrübəsini zənginləşdirən və ətraf mühitə hörmət edən innovativ, davamlı və zamanın sınağından çıxmış dizaynlar yaratmağa həsr olunmuş ehtiraslı memarlar komandasıyıq.",
+    "philosophyTitle": "FƏLSƏFƏMİZ",
+    "philosophyText1": "Memarlıq təkcə bina tikmək deyil; bu, insanları ruhlandıran, rahatlaşdıran və ətraf mühitlə əlaqələndirən məkanlar yaratmaqdır. Biz təkcə dizaynın estetik və funksional tərəflərini deyil, həm də onun davamlılığa və cəmiyyətə təsirini nəzərə alan vahid yanaşmaya inanırıq.",
+    "philosophyText2": "Həyata keçirdiyimiz hər bir layihə innovasiya, ətraf mühitə məsuliyyət və zamanın sınağından çıxmış dizayn prinsiplərinə əsaslanır. Həm struktur, həm də estetik cəhətdən zamanın sınağına tab gətirəcək binalar yaratmağa çalışırıq.",
+    "teamTitle": "KOMANDAMIZ",
+    "teamText": "Müxtəlif komandamız memarlıq dizaynı, şəhərsalma və davamlı tikinti sahəsində onilliklər boyu təcrübəni bir araya gətirir. Hər bir layihənin gözləntiləri aşmasını təmin etmək üçün müştərilər, mühəndislər və podratçılarla sıx əməkdaşlıq edirik.",
+    "founded": "Qurulub",
+    "projectsCompleted": "Tamamlanmış Layihələr",
+    "awards": "Mükafatlar"
+  },
+  "ConsultationPage": {
+    "title": "MƏSLƏHƏT ALIN",
+    "intro": "Layihənizi müzakirə etmək, dizayn imkanlarını araşdırmaq və vizyonunuzu necə həyata keçirə biləcəyimizi anlamaq üçün peşəkar memarlarımızla məsləhətləşmə təyin edin.",
+    "processTitle": "MƏSLƏHƏT PROSESİ",
+    "step1Title": "İlkin Görüş",
+    "step1Text": "Vizyonunuzu, tələblərinizi və layihənin həcmini ətraflı müzakirə edəcəyik.",
+    "step2Title": "Sahə Təhlili",
+    "step2Text": "Sahənizi qiymətləndirəcək və peşəkar tövsiyələr verəcəyik.",
+    "step3Title": "Təklif",
+    "step3Text": "Vaxt qrafiki, büdcə və dizayn yanaşması ilə ətraflı bir təklif alın.",
+    "bookingTitle": "MƏSLƏHƏT REZERV EDİN",
+    "firstName": "Ad",
+    "lastName": "Soyad",
+    "email": "E-poçt",
+    "phone": "Telefon",
+    "projectType": "Layihə Növü",
+    "projectTypes": {
+      "residential": "Yaşayış",
+      "commercial": "Kommersiya",
+      "renovation": "Təmir",
+      "interior": "İnteryer Dizayn",
+      "other": "Digər"
+    },
+    "projectInfo": "Layihəniz haqqında bizə məlumat verin",
+    "scheduleButton": "Məsləhət təyin et"
+  },
+  "ContactPage": {
+    "title": "BİZİMLƏ ƏLAQƏ",
+    "intro": "Memarlıq səyahətinizə başlamağa hazırsınız? Layihənizi müzakirə etmək və vizyonunuzu necə həyata keçirə biləcəyimizi öyrənmək üçün bizimlə əlaqə saxlayın.",
+    "getInTouch": "ƏLAQƏ SAXLAYIN",
+    "office": "Ofis",
+    "phone": "Telefon",
+    "email": "E-poçt",
+    "businessHours": "İş Saatları",
+    "businessHoursDetails": "Bazar ertəsi - Cümə: 9:00 - 18:00<br/>Şənbə: 10:00 - 16:00<br/>Bazar: Bağlıdır",
+    "sendMessage": "MESAJ GÖNDƏRİN",
+    "name": "Ad",
+    "subject": "Mövzu",
+    "message": "Mesaj",
+    "sendButton": "Mesaj göndər"
+  },
+  "ProjectsClient": {
+    "noImage": "Şəkil yoxdur",
+    "noHeroImage": "Əsas şəkil yoxdur",
+    "close": "Bağla",
+    "client": "Müştəri",
+    "typology": "Tipologiya",
+    "size": "Ölçü",
+    "status": "Status",
+    "year": "İl"
+  },
+  "InteractiveMap": {
+    "loading": "Xəritə yüklənir...",
+    "projectLocation": "Layihənin Məkanı"
+  }
+} 
