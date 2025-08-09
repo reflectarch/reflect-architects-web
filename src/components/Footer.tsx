@@ -27,34 +27,28 @@ export default function Footer() {
 
   const footerData = {
     email: [
-      { label: 'NEW PROJECTS', value: 'newbiz@reflectarchitects.com' },
-      { label: 'PRESS', value: 'press@reflectarchitects.com' },
-      { label: 'LECTURES', value: 'lectures@reflectarchitects.com' },
-      { label: 'EXHIBITIONS', value: 'exhibitions@reflectarchitects.com' },
+      { label: 'INFO', value: 'info@reflect.az' }
     ],
     offices: [
-      { label: 'NEW YORK', value: '123 Architecture Street, NY 10001' },
-      { label: 'LOS ANGELES', value: '456 Design Ave, LA 90210' },
-      { label: 'CHICAGO', value: '789 Modern Blvd, Chicago 60601' },
+      { label: 'Azerbaijan, Baku', value: '+994105119811' },
     ],
     social: [
-      { label: 'INSTAGRAM', value: '@reflectarchitects' },
-      { label: 'LINKEDIN', value: 'Reflect Architects' },
-      { label: 'FACEBOOK', value: 'Reflect Architects' },
-      { label: 'TWITTER', value: '@reflectarch' },
+      { label: 'INSTAGRAM', value: 'https://www.instagram.com/reflectarchitects' },
+      { label: 'LINKEDIN', value: 'https://www.linkedin.com/company/reflect-architects' },
+      { label: 'FACEBOOK', value: 'https://www.facebook.com/reflectarchitects' },
     ],
-    legal: [
-      { label: 'PRIVACY POLICY', value: 'View Policy' },
-      { label: 'TERMS OF SERVICE', value: 'View Terms' },
-      { label: 'COOKIE POLICY', value: 'View Policy' },
-      { label: 'LICENSING', value: 'View Licensing' },
-    ],
+    // legal: [
+    //   { label: 'PRIVACY POLICY', value: 'View Policy' },
+    //   { label: 'TERMS OF SERVICE', value: 'View Terms' },
+    //   { label: 'COOKIE POLICY', value: 'View Policy' },
+    //   { label: 'LICENSING', value: 'View Licensing' },
+    // ],
   };
 
   return (
     <footer className="bg-white border-t border-gray-200  left-0 right-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-16">
           
           {/* EMAIL Section */}
           <div>
@@ -141,7 +135,7 @@ export default function Footer() {
                       {item.label}
                     </div>
                     <a 
-                      href="#"
+                      href={item.value}
                       className="text-sm text-gray-600 hover:text-gray-900 underline transition-colors"
                     >
                       {item.value}
@@ -153,7 +147,7 @@ export default function Footer() {
           </div>
 
           {/* LEGAL Section */}
-          <div>
+          {/* <div>
             <button
               onClick={() => toggleSection('legal')}
               className="flex items-center justify-between w-full text-left group"
@@ -183,7 +177,7 @@ export default function Footer() {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
 
         </div>
       </div>

@@ -80,9 +80,8 @@ export default function Contact() {
                   Office
                 </h3>
                 <p className="text-gray-600">
-                  123 Architecture Street<br/>
-                  Design District<br/>
-                  New York, NY 10001
+                  Azerbaijan, Baku<br/>
+                  Yasamal District<br/>
                 </p>
               </div>
               
@@ -90,14 +89,14 @@ export default function Contact() {
                 <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wide mb-2">
                   Phone
                 </h3>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
+                <p className="text-gray-600">+994 (10) 511 98 11</p>
               </div>
               
               <div>
                 <h3 className="text-sm font-medium text-gray-900 uppercase tracking-wide mb-2">
                   Email
                 </h3>
-                <p className="text-gray-600">info@reflectarchitects.com</p>
+                <p className="text-gray-600">info@reflect.az</p>
               </div>
               
               <div>
